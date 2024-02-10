@@ -1,2 +1,2 @@
-category, task, time, deadline
-work, "calculus review", "6:43pm", "10:00pm"
+id, category, task, deadline, status
+1, work, "calculus review", "10:00pm", started
