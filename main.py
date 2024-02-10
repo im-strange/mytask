@@ -131,6 +131,10 @@ class cli:
         elif self.match(["--view"], self.args):
             self.app.display_table()
 
+        else:
+            self.display_help()
+            print("\n[!] unknown command")
+
 if __name__ == "__main__":
     args = sys.argv
     cli = cli(args)

@@ -1,3 +1,4 @@
 id, category, task, deadline, status
+3,self,self,self,working
 2,school,school,school,finished
 1,school,review,tom,finished
