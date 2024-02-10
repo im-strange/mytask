@@ -23,6 +23,12 @@ class app:
         current_list = list(csv.reader(open(self.data_file)))[1:]
         return current_list
 
+    def write(self, data):
+        data.insert(0, self.columns)
+        with open(self.data_file, "w") as file:
+            writer = csv.writer(file)
+            writer.writerows(data)
+
     def add(self, task_list):
         id = len(self.list) + 1
         current_tasks = self.read_list()
@@ -30,8 +36,33 @@ class app:
         task_list.insert(0, id)
         current_tasks.insert(0, task_list)
 
-    def remove(self):
-        pass
+        self.write(current_tasks)
+        print(f"[+] Task added!")
+
+    def remove(self, id):
+        auth = input("[!] Are you sure you want to remove the task? (y/n): ")
+
+        if auth.lower() == "y":
+            pass
+        else:
+            print(f"[+] Deletion cancelled")
+            exit()
+
+        tasks = self.read_list()
+        tasks = [task for task in tasks if int(task[0]) != int(id)]
+        self.write(tasks)
+
+        print("[+] Task removed!")
+
+    def edit(self, id, new_data):
+        tasks = self.read_list()
+        to_edit = [task for task in tasks if int(task[0]) == int(id)][0]
+        tasks.remove(to_edit)
+        new_data.insert(0, to_edit[0])
+        tasks.insert(0, new_data)
+
+        self.write(tasks)
+        print("[+] Task updated!")
 
     def display_table(self):
         table = Texttable()
@@ -52,7 +83,8 @@ class cli:
             "  -h, --help\t Display help",
             "  -a, --add\t Add a new task",
             "  -d, --drop\t Delete a task",
-            "  -e, --edit\t Edit a task"
+            "  -e, --edit\t Edit a task",
+            "  --view\t View task"
         ]
         for row in help_msg:
             print(row)
@@ -66,13 +98,33 @@ class cli:
             self.display_help()
 
         elif self.match(["-a", "--add"], self.args):
-            print("you are adding a tasks")
+            category = input("[+] Enter category: ")
+            task = input("[+] Enter task: ")
+            deadline = input("[+] Enter deadline: ")
+            status = "added"
 
+            data = [category, task, deadline, status]
+            data = [i.lower() for i in data]
+
+            self.app.add(data)
         elif self.match(["-d", "--drop"], self.args):
-            print("you are removing a task")
+            try:
+                id = int(input("[+] Enter task id: "))
+                self.app.remove(id)
+            except:
+                print("[!] Error")
+                exit()
 
         elif self.match(["-e", "--edit"], self.args):
-            print("you are editing a task")
+            id = int(input("[+] Enter id to edit: "))
+            category = input("[+] Enter category: ")
+            task = input("[+] Enter task: ")
+            deadline = input("[+] Enter deadline: ")
+            status = input("[+] Enter status: ")
+
+            new_data = [category, task, deadline, status]
+            new_data = [i.lower() for i in new_data]
+            self.app.edit(id, new_data)
 
         elif self.match(["--view"], self.args):
             self.app.display_table()
