@@ -41,11 +41,10 @@ class app:
 
     def remove(self, id):
         auth = input("[!] Are you sure you want to remove the task? (y/n): ")
-
         if auth.lower() == "y":
             pass
         else:
-            print(f"[+] Deletion cancelled")
+            print(f"[!] Deletion cancelled")
             exit()
 
         tasks = self.read_list()
@@ -57,8 +56,11 @@ class app:
     def edit(self, id, new_data):
         tasks = self.read_list()
         to_edit = [task for task in tasks if int(task[0]) == int(id)][0]
+        to_edit_index = to_edit[0]
         tasks.remove(to_edit)
-        new_data.insert(0, to_edit[0])
+
+        new_data.insert(0, to_edit_index)
+        new_data = [i if len(i.split()) > 0 else to_edit[new_data.index(i)] for i in new_data]
         tasks.insert(0, new_data)
 
         self.write(tasks)
@@ -131,6 +133,5 @@ class cli:
 
 if __name__ == "__main__":
     args = sys.argv
-    todo = app()
     cli = cli(args)
     cli.run()
