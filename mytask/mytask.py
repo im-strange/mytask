@@ -101,7 +101,7 @@ class cli:
         if self.match(["-h", "--help", "help"], self.args):
             self.display_help()
 
-        elif self.match(["-a", "--add"], self.args):
+        elif self.match(["add"], self.args):
             category = input("[+] Enter category: ")
             task = input("[+] Enter task: ")
             deadline = input("[+] Enter deadline: ")
