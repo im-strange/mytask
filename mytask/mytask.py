@@ -84,11 +84,11 @@ class cli:
         help_msg = [
             "Usage: mytask [OPTIONS]\n",
             "Options:",
-            "  -h, --help\t Display help",
-            "  add\t Add a new task",
-            "  drop\t Delete a task",
-            "  edit\t Edit a task",
-            "  view\t View task"
+            "   help\t Display help",
+            "   add\t Add a new task",
+            "   drop\t Delete a task",
+            "   edit\t Edit a task",
+            "   view\t View task"
         ]
         for row in help_msg:
             print(row)
