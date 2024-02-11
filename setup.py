@@ -10,9 +10,6 @@ setup(
       install_requires=[
           "texttable"
       ],
-      include_package_data=True,
-      packages=[],
-      package_data={},
       entry_points={
           "console_scripts": ["mytask = mytask:__main__"]
       }
