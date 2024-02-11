@@ -1,4 +1,5 @@
-from setuptools import setup
+
+from setuptools import setup, find_packages
 
 setup(
       name="mytask",
@@ -10,6 +11,9 @@ setup(
       install_requires=[
           "texttable"
       ],
+      packages=find_packages(),
+      package_data={"":["data.csv"]},
+      include_package_data=True,
       entry_points={
           "console_scripts": ["mytask = mytask:main"]
       }
