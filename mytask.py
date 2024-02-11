@@ -137,8 +137,8 @@ class cli:
 
 def main():
     args = sys.argv
-    cli = cli(args)
-    cli.run()
+    cl = cli(args)
+    cl.run()
 
 if __name__ == "__main__":
     main()
