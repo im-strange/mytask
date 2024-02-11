@@ -85,10 +85,10 @@ class cli:
             "Usage: mytask [OPTIONS]\n",
             "Options:",
             "  -h, --help\t Display help",
-            "  -a, --add\t Add a new task",
-            "  -d, --drop\t Delete a task",
-            "  -e, --edit\t Edit a task",
-            "  --view\t View task"
+            "  add\t Add a new task",
+            "  drop\t Delete a task",
+            "  edit\t Edit a task",
+            "  view\t View task"
         ]
         for row in help_msg:
             print(row)
@@ -98,7 +98,7 @@ class cli:
         return result
 
     def run(self):
-        if self.match(["-h", "--help"], self.args):
+        if self.match(["-h", "--help", "help"], self.args):
             self.display_help()
 
         elif self.match(["-a", "--add"], self.args):
@@ -109,9 +109,9 @@ class cli:
 
             data = [category, task, deadline, status]
             data = [i.lower() for i in data]
-
             self.app.add(data)
-        elif self.match(["-d", "--drop"], self.args):
+
+        elif self.match(["drop"], self.args):
             try:
                 id = int(input("[+] Enter task id: "))
                 self.app.remove(id)
@@ -119,7 +119,7 @@ class cli:
                 print("[!] Error")
                 exit()
 
-        elif self.match(["-e", "--edit"], self.args):
+        elif self.match(["edit"], self.args):
             id = int(input("[+] Enter id to edit: "))
             category = input("[+] Enter category: ")
             task = input("[+] Enter task: ")
@@ -130,7 +130,7 @@ class cli:
             new_data = [i.lower() for i in new_data]
             self.app.edit(id, new_data)
 
-        elif self.match(["--view"], self.args):
+        elif self.match(["view"], self.args):
             self.app.display_table()
 
         else:
