@@ -14,6 +14,6 @@ setup(
       packages=[],
       package_data={},
       entry_points={
-          "console_scripts": ["mytask = mytask:main"]
+          "console_scripts": ["mytask = mytask:__main__"]
       }
 )
