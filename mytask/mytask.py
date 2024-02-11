@@ -1,4 +1,5 @@
 
+import os
 import csv
 import sys
 from texttable import Texttable
@@ -14,7 +15,8 @@ from texttable import Texttable
 
 class app:
     def __init__(self):
-        self.data_file = "data.csv"
+        self.data_dir = os.path.join(os.path.dirname(__file__), 'data')
+        self.data_file = file1_path = os.path.join(self.data_dir, 'data.csv')
         self.list = list(csv.reader(open(self.data_file)))
         self.columns = self.list[0]
         self.list = self.list[1:]

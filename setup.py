@@ -12,7 +12,7 @@ setup(
           "texttable"
       ],
       packages=find_packages(),
-      package_data={"":["data.csv"]},
+      package_data={"mytask":["data/*"]},
       include_package_data=True,
       entry_points={
           "console_scripts": ["mytask = mytask:main"]
