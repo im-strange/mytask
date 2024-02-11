@@ -11,6 +11,6 @@ setup(
           "texttable"
       ],
       entry_points={
-          "console_scripts": ["mytask = mytask:__main__"]
+          "console_scripts": ["mytask = mytask:main"]
       }
 )

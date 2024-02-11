@@ -135,7 +135,10 @@ class cli:
             self.display_help()
             print("\n[!] unknown command")
 
-if __name__ == "__main__":
+def main():
     args = sys.argv
     cli = cli(args)
     cli.run()
+
+if __name__ == "__main__":
+    main()
