@@ -5,7 +5,7 @@ setup(
       name="mytask",
       version="1.0.0",
       url="https://github.com/im-strange/mytask.git",
-      author="Samuel Genoguin",
+      author="im-strange",
       description="A simple to-do app",
       py_modules=["mytask"],
       install_requires=[
